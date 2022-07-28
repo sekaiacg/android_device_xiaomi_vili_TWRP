@@ -34,8 +34,7 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 
 PRODUCT_PACKAGES += \
     bootctrl.xiaomi_sm8350.recovery \
-    android.hardware.boot@1.1-impl-qti.recovery \
-    fastbootd
+    android.hardware.boot@1.1-impl-qti.recovery
 
 PRODUCT_HOST_PACKAGES += \
     libandroidicu
