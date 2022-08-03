@@ -55,37 +55,40 @@ void property_override(const std::string& name, const std::string& value)
     }
 }
 
-void model_property_override(const std::string& device, const std::string& model)
+void model_property_override(const std::string& device, const std::string& name, const std::string& model)
 {
+    property_override("ro.build.product", device);
     property_override("ro.product.device", device);
     property_override("ro.product.odm.device", device);
-    property_override("ro.product.system.device", device);
     property_override("ro.product.vendor.device", device);
-    property_override("ro.build.product", device);
-    property_override("ro.product.name", device);
-    property_override("ro.product.odm.name", device);
     property_override("ro.product.product.device", device);
-    property_override("ro.product.product.name", device);
-    property_override("ro.product.system.name", device);
     property_override("ro.product.system_ext.device", device);
-    property_override("ro.product.system_ext.name", device);
-    property_override("ro.product.vendor.name", device);
+    property_override("ro.product.system.device", device);
+    property_override("ro.product.name", name);
+    property_override("ro.product.odm.name", name);
+    property_override("ro.product.vendor.name", name);
+    property_override("ro.product.product.name", name);
+    property_override("ro.product.system_ext.name", name);
+    property_override("ro.product.system.name", name);
     property_override("ro.product.model", model);
     property_override("ro.product.odm.model", model);
-    property_override("ro.product.system.model", model);
     property_override("ro.product.vendor.model", model);
     property_override("ro.product.product.model", model);
     property_override("ro.product.system_ext.model", model);
-
+    property_override("ro.product.system.model", model);
 }
 
 void vendor_load_properties() {
     property_override("ro.bootimage.build.date.utc", "1609430400");
     property_override("ro.build.date.utc", "1609430400");
-    const std::string twrp_name = GetProperty("ro.twrp.device.name", "");
-    if (twrp_name == "vili") {
-      model_property_override("vili", "Xiaomi 11T Pro");
+    const std::string sku = GetProperty("ro.boot.hardware.sku", "");
+    if (sku == "vili") {
+      model_property_override("vili", "vili", "Xiaomi 11T Pro");
+    } else if (sku == "vivlgl" || sku == "vilijp") {
+      model_property_override("vili", "vili_global", "Xiaomi 11T Pro");
+    } else if (sku == "viliin") {
+      model_property_override("vili", "vili_in", "Xiaomi 11T Pro");
     } else {
-      model_property_override("unknow", "unknow name");
+      model_property_override("unknow", "unknow", "unknow name");
     }
 }
