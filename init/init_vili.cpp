@@ -84,7 +84,7 @@ void vendor_load_properties() {
     const std::string sku = GetProperty("ro.boot.hardware.sku", "");
     if (sku == "vili") {
       model_property_override("vili", "vili", "Xiaomi 11T Pro");
-    } else if (sku == "vivlgl" || sku == "vilijp") {
+    } else if (sku == "viligl" || sku == "vilijp") {
       model_property_override("vili", "vili_global", "Xiaomi 11T Pro");
     } else if (sku == "viliin") {
       model_property_override("vili", "vili_in", "Xiaomi 11T Pro");
